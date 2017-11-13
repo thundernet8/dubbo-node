@@ -1,4 +1,4 @@
-import Dubbo from "../../src/Dubbo";
+import Dubbo from "../../lib/Dubbo";
 
 export const ServiceHead = {
     _interface: "com.alibaba.dubbo.demo.DemoService",

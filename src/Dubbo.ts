@@ -40,6 +40,8 @@ export default class Dubbo {
         this.root = options.root || this.root;
         this.dubboVer = options.dubboVer;
 
+        this.services = options.services;
+
         this.client = zookeeper.createClient(options.register, {
             sessionTimeout: 3000,
             spinDelay: 1000,
@@ -76,14 +78,14 @@ export default class Dubbo {
             if (++COUNT === SERVICE_LENGTH) {
                 console.log(
                     "\x1b[32m%s\x1b[0m",
-                    `[${this.application}]Dubbo service init done`
+                    `[${this.application.name}]Dubbo service init done`
                 );
             }
         }
     };
 
     private consumer = () => {
-        return reg.consumer();
+        return reg.consumer.call(this);
     };
 
     public getServiceImpl = (service: string) => {
@@ -100,6 +102,6 @@ export default class Dubbo {
         const service = servicePieces[0];
         const method = servicePieces[1];
         const serviceImpl = dubbo.getServiceImpl(service);
-        return serviceImpl[method](payload);
+        return serviceImpl.getExecutor(method)(payload);
     };
 }

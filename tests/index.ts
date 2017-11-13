@@ -1,4 +1,4 @@
-import Dubbo from "../src/Dubbo";
+import Dubbo from "../lib/Dubbo";
 import services from "./services";
 import { sayHello } from "./services/foo";
 

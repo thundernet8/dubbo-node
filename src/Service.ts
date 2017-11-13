@@ -1,6 +1,6 @@
 import IServiceInfo from "./IServiceInfo";
 import Dubbo from "./Dubbo";
-import qs from "querystring";
+import * as qs from "querystring";
 import * as net from "net";
 import * as url from "url";
 import Java from "js-to-java";
@@ -18,7 +18,7 @@ export default class ServiceImpl {
 
     private hosts: string[] = [];
 
-    private executors: { [method: string]: any };
+    private executors: { [method: string]: any } = {};
 
     private encodeParam;
 
@@ -115,7 +115,7 @@ export default class ServiceImpl {
         this.find(this._interface, cb);
     };
 
-    private execute(method, args) {
+    private execute = (method: string, args) => {
         this.encodeParam._method = method;
         this.encodeParam._args = args;
         const buffer = new Encode(this.encodeParam);
@@ -168,5 +168,9 @@ export default class ServiceImpl {
                 }
             });
         });
-    }
+    };
+
+    public getExecutor = (method: string) => {
+        return this.executors[method];
+    };
 }

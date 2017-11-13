@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Dubbo_1 = require("../../src/Dubbo");
+var Dubbo_1 = require("../../lib/Dubbo");
 exports.ServiceHead = {
     _interface: "com.alibaba.dubbo.demo.DemoService",
     version: "LATEST",
     timeout: 6000,
     group: "dubbo",
     methods: {
-        sayHello: function (name) { return [{ $class: "java.lang.String", $: name }]; }
+        sayHello: function(name) {
+            return [{ $class: "java.lang.String", $: name }];
+        }
     }
 };
 function sayHello(name) {
