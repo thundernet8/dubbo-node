@@ -1,0 +1,23 @@
+{
+    "name": "dubbo-node",
+    "version": "0.0.1",
+    "description": "connect to dubbo with nodejs consumer",
+    "main": "lib/index.js",
+    "repository": "git@github.com:thundernet8/dubbo-node.git",
+    "author": "吴学谦 <wuxueqian@ezbuy.com>",
+    "license": "ISC",
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.51",
+        "typescript": "^2.6.1"
+    },
+    "dependencies": {
+        "hessian.js": "^2.5.0",
+        "js-to-java": "^2.4.0",
+        "node-zookeeper-client": "^0.2.2",
+        "querystring": "^0.2.0",
+        "url": "^0.11.0"
+    }
+}
