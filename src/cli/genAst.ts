@@ -802,7 +802,6 @@ export default function(code: string) {
         while (true) {
             try {
                 let block = readSubject();
-                console.log(_package);
                 let { subject, name } = block;
                 if (!ast[subject]) {
                     ast[subject] = subject === "import" ? [] : {};

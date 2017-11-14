@@ -108,7 +108,10 @@ export default class Dubbo {
         return new Consumer(this);
     };
 
-    public static exec = (serviceNMethod: string, payload: any) => {
+    public static exec = function<T>(
+        serviceNMethod: string,
+        payload: any
+    ): Promise<T> {
         if (!Dubbo.instance) {
             throw new Error("Dubbo is not initialized");
         }

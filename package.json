@@ -1,5 +1,5 @@
 {
-    "name": "dubbo-node",
+    "name": "dubbo-node-zookeeper",
     "version": "0.0.1",
     "description": "connect to dubbo with nodejs consumer",
     "main": "lib/index.js",
@@ -11,7 +11,9 @@
     },
     "scripts": {
         "build": "rimraf lib && tsc",
-        "test": "node tests/index.js"
+        "test": "node tests/index.js",
+        "test:cli":
+            "./bin/dubbo2ts -i tests/cli/java -o tests/cli/java/services"
     },
     "devDependencies": {
         "@types/node": "^8.0.51",
