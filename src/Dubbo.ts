@@ -1,7 +1,7 @@
 import * as zookeeper from "node-zookeeper-client";
-import * as reg from "./libs/register";
 import ServiceImpl from "./Service";
 import IServiceInfo from "./IServiceInfo";
+import Consumer from "./Consumer";
 
 let SERVICE_LENGTH = 0;
 let COUNT = 0;
@@ -67,6 +67,26 @@ export default class Dubbo {
         return this.timeout;
     }
 
+    public getServiceImpl = (service: string) => {
+        return this.serviceImpls[service];
+    };
+
+    public getClient = () => {
+        return this.client;
+    };
+
+    public getServices = () => {
+        return this.services;
+    };
+
+    public getApplication = () => {
+        return this.application;
+    };
+
+    public getVersion = () => {
+        return this.dubboVer;
+    };
+
     private applyServices = () => {
         for (let key in this.services) {
             this.serviceImpls[key] = new ServiceImpl(
@@ -85,11 +105,7 @@ export default class Dubbo {
     };
 
     private consumer = () => {
-        return reg.consumer.call(this);
-    };
-
-    public getServiceImpl = (service: string) => {
-        return this.serviceImpls[service];
+        return new Consumer(this);
     };
 
     public static exec = (serviceNMethod: string, payload: any) => {
