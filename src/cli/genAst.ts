@@ -52,13 +52,10 @@ let simplifyDataType = (type: IDataType): string | IDataType => {
     switch (type.name.toLowerCase()) {
         case "map":
         case "hashmap":
-        //return `map<${type.keyType}, ${type.valueType}>`;
         case "list":
         case "arraylist":
-        //return `list<${type.valueType}>`;
         case "set":
         case "hashset":
-            //return `set<${type.valueType}>`;
             return type;
         default:
             return (type.fullName || type.name).toString();
@@ -511,7 +508,9 @@ export default function(code: string) {
                     return +value.join("");
                 } else {
                     throw new Error(
-                        `Unexpect token ${char} (current call: readEnotationValue)`
+                        `Unexpect token ${
+                            char
+                        } (current call: readEnotationValue)`
                     );
                 }
             }
@@ -527,9 +526,9 @@ export default function(code: string) {
 
         if (code[offset] !== "0") {
             throw new Error(
-                `Unexpected token ${code[
-                    offset
-                ]} (current call: readHexadecimalValue)`
+                `Unexpected token ${
+                    code[offset]
+                } (current call: readHexadecimalValue)`
             );
         }
         value.push(code[offset++]);
@@ -545,7 +544,9 @@ export default function(code: string) {
                     return +value.join("");
                 } else {
                     throw new Error(
-                        `Unexpected token ${char} (current call: readHexadecimalValue)`
+                        `Unexpected token ${
+                            char
+                        } (current call: readHexadecimalValue)`
                     );
                 }
             }

@@ -31,7 +31,7 @@ const mapType = (javaType: string) => {
         case "java.lang.Void":
             return "void";
         default:
-            return javaType;
+            return "any"; // TODO 将自定义Java类装换为TS接口
     }
 };
 
@@ -44,10 +44,13 @@ const genServices = (
     const ast = genAst(code) as any;
     const pkg = ast.package.value;
 
-    return Object.keys(ast.interface).map(key => {
+    const serviceNames = Object.keys(ast.interface);
+    const codes = serviceNames.map(key => {
         const serviceAst = ast.interface[key];
         return genService(pkg, key, serviceAst, group, version, timeout);
     });
+    codes.push(genIndexFile(serviceNames));
+    return codes;
 };
 
 const genService = (
@@ -121,6 +124,27 @@ const genService = (
 
     return {
         name: serviceName,
+        code: prettier.format(code.join(""), prettierConfig)
+    };
+};
+
+const genIndexFile = (serviceNames: string[]) => {
+    let code: string[] = [];
+    code.push(header);
+    serviceNames.forEach(name => {
+        code.push(
+            `import {ServiceHead as ${name}} from "./${name}";${NEW_LINE}`
+        );
+    });
+
+    code.push(
+        `${NEW_LINE_2}export default {${NEW_LINE}${serviceNames.join(",")}${
+            NEW_LINE
+        }};`
+    );
+
+    return {
+        name: "index",
         code: prettier.format(code.join(""), prettierConfig)
     };
 };
