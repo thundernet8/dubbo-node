@@ -4,15 +4,15 @@ import * as qs from "querystring";
 import * as net from "net";
 import * as url from "url";
 import Java from "js-to-java";
-import { Encode } from "./libs/encode";
-import * as decode from "./libs/decode";
+import Decode from "./protocol/Decode";
+import Encode, { IEncodeOption } from "./protocol/Encode";
 
 export default class ServiceImpl {
     private zookeeper: any;
     private version: string;
     private dubboVer: string;
     private group: string;
-    private _interface: string;
+    private interfac: string;
     private methods: { [method: string]: any };
     private root: string;
 
@@ -20,7 +20,7 @@ export default class ServiceImpl {
 
     private executors: { [method: string]: any } = {};
 
-    private encodeParam;
+    private encodeParam: IEncodeOption;
 
     public constructor(
         zookeeperClient: any,
@@ -32,19 +32,19 @@ export default class ServiceImpl {
         this.version = serviceInfo.version;
         this.dubboVer = dubboVer;
         this.group = serviceInfo.group || (dubbo.getGroup() as string);
-        this._interface = serviceInfo._interface;
+        this.interfac = serviceInfo.interfac;
         this.methods = Object.assign({}, serviceInfo.methods);
         this.root = dubbo.getRoot();
 
         this.encodeParam = {
-            _dver: this.dubboVer || "2.5.3.6",
-            _interface: this._interface,
-            _version: this.version,
-            _group: this.group || dubbo.getGroup(),
-            _timeout: serviceInfo.timeout || dubbo.getTimeout()
-        };
+            dubboVer: this.dubboVer || "2.5.3.6",
+            interfac: this.interfac,
+            version: this.version,
+            group: this.group || dubbo.getGroup(),
+            timeout: serviceInfo.timeout || dubbo.getTimeout()
+        } as IEncodeOption;
 
-        this.find(serviceInfo._interface);
+        this.find(serviceInfo.interfac);
     }
 
     private find = (path: string, cb?) => {
@@ -112,13 +112,13 @@ export default class ServiceImpl {
     };
 
     private flush = cb => {
-        this.find(this._interface, cb);
+        this.find(this.interfac, cb);
     };
 
     private execute = (method: string, args) => {
-        this.encodeParam._method = method;
-        this.encodeParam._args = args;
-        const buffer = new Encode(this.encodeParam);
+        this.encodeParam.method = method;
+        this.encodeParam.args = args;
+        const buffer = new Encode(this.encodeParam).getBuffer();
 
         return new Promise((resolve, reject) => {
             const client = new net.Socket();
@@ -159,7 +159,7 @@ export default class ServiceImpl {
 
             client.on("close", err => {
                 if (!err) {
-                    decode(heap, (err, result) => {
+                    Decode(heap, (err, result) => {
                         if (err) {
                             return reject(err);
                         }

@@ -1,5 +1,5 @@
 interface IServiceInfo {
-    _interface: string;
+    interfac: string;
     version: string;
     timeout: number;
     group: string;

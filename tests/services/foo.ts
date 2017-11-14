@@ -1,7 +1,7 @@
 import Dubbo from "../../lib/Dubbo";
 
 export const ServiceHead = {
-    _interface: "com.alibaba.dubbo.demo.DemoService",
+    interfac: "com.alibaba.dubbo.demo.DemoService",
     version: "LATEST",
     timeout: 6000,
     group: "dubbo",

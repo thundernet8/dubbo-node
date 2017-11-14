@@ -64,16 +64,16 @@ export default class Consumer {
             .forEach(key => {
                 const service = services[key];
 
-                urlObj.host = `${host}/${service._interface}`;
+                urlObj.host = `${host}/${service.interfac}`;
                 urlObj.query = Object.assign({}, urlObj.query, {
-                    interface: service._interface,
+                    interface: service.interfac,
                     revision: service.version,
                     version: service.version,
                     group: service.group
                 });
 
                 paths.push(
-                    `/${dubbo.getRoot()}/${service._interface}/consumers/${encodeURIComponent(
+                    `/${dubbo.getRoot()}/${service.interfac}/consumers/${encodeURIComponent(
                         url.format(urlObj as any)
                     )}`
                 );
