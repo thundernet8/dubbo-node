@@ -6,6 +6,9 @@
     "repository": "git@github.com:thundernet8/dubbo-node.git",
     "author": "吴学谦 <wuxueqian@ezbuy.com>",
     "license": "ISC",
+    "bin": {
+        "dubbo2ts": "./bin/dubbo2ts"
+    },
     "scripts": {
         "build": "rimraf lib && tsc",
         "test": "node tests/index.js"
@@ -19,6 +22,7 @@
         "hessian.js": "^2.5.0",
         "js-to-java": "^2.4.0",
         "node-zookeeper-client": "^0.2.2",
+        "prettier": "^1.8.2",
         "querystring": "^0.2.0",
         "url": "^0.11.0"
     }
