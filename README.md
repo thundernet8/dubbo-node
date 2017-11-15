@@ -20,6 +20,45 @@ yarn global add dubbo-node-zookeeper
 dubbo2ts -i DemoService.java -o services -g dubbo -r LATEST -t 6000
 ```
 
+生成示例 - DemoService.ts
+```
+import Dubbo from "dubbo-node-zookeeper";
+
+export const ServiceHead = {
+    interfac: "com.alibaba.dubbo.demo.DemoService",
+    version: "LATEST",
+    timeout: 6000,
+    group: "dubbo",
+    methods: {
+        sayHello: name => [{ $class: "java.lang.String", $: name }],
+        sayHello2: req => [{ $class: "com.alibaba.dubbo.demo.DemoReq", $: req }]
+    }
+};
+
+export function sayHello(name: string) {
+    return Dubbo.exec<string>("DemoService.sayHello", name);
+}
+
+export function sayHello2(req: any) {
+    return Dubbo.exec<string>("DemoService.sayHello2", req);
+}
+
+export default {
+    sayHello,
+    sayHello2
+};
+```
+
+生成示例 - index.ts(引入所有的Services)
+```
+import { ServiceHead as DemoService } from "./DemoService";
+
+export default {
+    DemoService
+};
+```
+
+
 ### 使用services
 ```
 import Dubbo from "dubbo-node-zookeeper";
