@@ -49,5 +49,8 @@ app.get("/hello", (req, res) => {
 })
 ```
 
+## Demo
+查看[Demo](./demo)工程
+
 ## Alternatives
 [node-zookeeper-dubbo](https://www.npmjs.com/package/node-zookeeper-dubbo)

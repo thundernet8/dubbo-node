@@ -1,11 +1,11 @@
 {
     "name": "dubbo-node-zookeeper",
-    "version": "0.0.1",
+    "version": "0.0.5",
     "description": "connect to dubbo with nodejs consumer",
-    "main": "lib/index.js",
+    "main": "lib/Dubbo.js",
     "repository": "git@github.com:thundernet8/dubbo-node.git",
-    "author": "吴学谦 <wuxueqian@ezbuy.com>",
-    "license": "ISC",
+    "author": "wuxueqian <wuxueqian2010@hotmail.com>",
+    "license": "MIT",
     "bin": {
         "dubbo2ts": "./bin/dubbo2ts"
     },

@@ -77,7 +77,7 @@ export default class ServiceImpl {
                             .host as string);
                         const methods = zoo.methods.split(",");
                         for (let j = 0, k = methods.length; j < k; j++) {
-                            this.executors[methods[i]] = (method => {
+                            this.executors[methods[j]] = (method => {
                                 const self = this;
                                 return function() {
                                     let args = Array.from(arguments);
@@ -92,7 +92,7 @@ export default class ServiceImpl {
                                     }
                                     return self.execute(method, args);
                                 };
-                            })(methods[i]);
+                            })(methods[j]);
                         }
                     }
                 }

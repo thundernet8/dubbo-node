@@ -64,7 +64,7 @@ const genService = (
     const serviceHeadHandler = () => {
         const heads: string[] = [];
         heads.push(`export const ServiceHead = {${NEW_LINE}`);
-        heads.push(`inferfac: "${pkg}.${serviceName}",${NEW_LINE}`);
+        heads.push(`interfac: "${pkg}.${serviceName}",${NEW_LINE}`);
         heads.push(`version: "${version}",${NEW_LINE}`);
         heads.push(`timeout: ${timeout.toString()},${NEW_LINE}`);
         heads.push(`group: "${group}",${NEW_LINE}`);
