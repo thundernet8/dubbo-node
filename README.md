@@ -1,4 +1,5 @@
 ## dubbo-node-zookeeper
+[![Build Status](https://travis-ci.org/thundernet8/dubbo-node.svg?branch=master)](https://travis-ci.org/thundernet8/dubbo-node)
 
 NodeJS与dubbo RPC通信, zookeeper协同，提供了CLI从Java Interface一键生成services并引用。
 
