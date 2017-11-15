@@ -11,25 +11,25 @@ const argv = yargs
     .alias("v", "version")
     .alias("i", "input")
     .alias("o", "output")
-    .alias("sg", "serviceGroup")
-    .alias("sv", "serviceVer")
-    .alias("st", "serviceTimeout")
+    .alias("g", "serviceGroup")
+    .alias("r", "serviceVerison")
+    .alias("t", "serviceTimeout")
     .alias("h", "help")
     .usage("Usage: $0 <command> [options]")
     .example(
-        "$0 -i ./DemoService.java -o ./services -sg dubbo -sv LATEST -st 6000",
+        "$0 -i ./DemoService.java -o ./services -g dubbo -r LATEST -t 6000",
         ""
     )
     .demandOption(["i"])
     .default("o", "./services")
-    .default("sg", "dubbo")
-    .default("sv", "LATEST")
-    .default("st", 6000)
+    .default("g", "dubbo")
+    .default("r", "LATEST")
+    .default("t", 6000)
     .describe("i", "Input Java file(s) path(directory)")
     .describe("o", "Ouput typescript file folder")
-    .describe("sg", "Service group in zookeeper/dubbo")
-    .describe("sv", "Service version in zookeeper/dubbo")
-    .describe("st", "Service timeout in zookeeper/dubbo")
+    .describe("g", "Service group in zookeeper/dubbo")
+    .describe("r", "Service version/revision in zookeeper/dubbo")
+    .describe("t", "Service timeout in zookeeper/dubbo")
     .epilog("Copyright " + new Date().getFullYear())
     .help().argv;
 
@@ -52,7 +52,7 @@ try {
     files.forEach(f => {
         const code = readFileSync(f).toString();
         console.log("\r\n");
-        genServices(code).forEach(s => {
+        genServices(code, argv.g, argv.r, argv.t).forEach(s => {
             const outputFile = resolve(outputFoloder, `${s.name}.ts`);
             console.log(outputFile);
             writeFileSync(outputFile, s.code);
