@@ -17,7 +17,7 @@ yarn global add dubbo-node-zookeeper
 
 ### CLI生成services
 ```
-dubbo2ts -i DemoService.java -o services -sg dubbo -sv LATEST -st 6000
+dubbo2ts -i DemoService.java -o services -g dubbo -r LATEST -t 6000
 ```
 
 ### 使用services
