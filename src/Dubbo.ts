@@ -110,7 +110,7 @@ export default class Dubbo {
 
     public static exec = function<T>(
         serviceNMethod: string,
-        payload: any
+        ...payload: any[]
     ): Promise<T> {
         if (!Dubbo.instance) {
             throw new Error("Dubbo is not initialized");
@@ -121,6 +121,6 @@ export default class Dubbo {
         const service = servicePieces[0];
         const method = servicePieces[1];
         const serviceImpl = dubbo.getServiceImpl(service);
-        return serviceImpl.getExecutor(method)(payload);
+        return serviceImpl.getExecutor(method)(...payload);
     };
 }

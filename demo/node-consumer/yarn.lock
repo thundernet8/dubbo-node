@@ -69,8 +69,8 @@ decamelize@^1.1.1:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
 dubbo-node-zookeeper@^0.0.3:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/dubbo-node-zookeeper/-/dubbo-node-zookeeper-0.0.2.tgz#8443fddb2b2bb56ee19336a3bfad5a7b4350d3f0"
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/dubbo-node-zookeeper/-/dubbo-node-zookeeper-0.0.3.tgz#8ec673e0d0b5ada90e95ba505ea4f929e4567607"
   dependencies:
     hessian.js "^2.5.0"
     js-to-java "^2.4.0"

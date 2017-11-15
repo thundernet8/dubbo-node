@@ -1,7 +1,7 @@
 ## 生成Services
 
 ```
-dubbo2ts -i ../dubbo-demo-provider/src/main/java/com/alibaba/dubbo/demo/DemoService.java -o services
+dubbo2ts -i ../dubbo-demo/dubbo-demo-provider/src/main/java/com/alibaba/dubbo/demo/DemoService.java -o services
 
 
 ## 启动Zookeeper
