@@ -1,6 +1,6 @@
 {
     "name": "dubbo-node-zookeeper",
-    "version": "0.0.5",
+    "version": "0.1.0",
     "description": "connect to dubbo with nodejs consumer",
     "main": "lib/Dubbo.js",
     "repository": "git@github.com:thundernet8/dubbo-node.git",
