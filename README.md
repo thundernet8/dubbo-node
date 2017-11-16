@@ -7,25 +7,25 @@ NodeJS与dubbo RPC通信, zookeeper协同，提供了CLI从Java Interface一键�
 
 ## Install
 
-```
+``` javascript
 npm install dubbo-node-zookeeper -g
 ```
 或
-```
+``` javascript
 yarn global add dubbo-node-zookeeper
 ```
 
 ## Usage
 
 ### CLI生成services
-```
+``` typescript
 dubbo2ts -i DemoService.java -o services -g dubbo -r LATEST -t 6000
 ```
 
 use `dubbo2ts -h` for more details.
 
 生成示例 - DemoService.ts(CLI generated)
-```
+``` typescript
 import Dubbo from "dubbo-node-zookeeper";
 
 export const ServiceHead = {
@@ -54,7 +54,7 @@ export default {
 ```
 
 生成示例 - index.ts(引入所有的Services)(CLI generated)
-```
+``` typescript
 import { ServiceHead as DemoService } from "./DemoService";
 
 export default {
@@ -64,7 +64,7 @@ export default {
 
 
 ### 使用services
-```
+``` typescript
 import Dubbo from "dubbo-node-zookeeper";
 import services from "./services";
 import { sayHello } from "./services/DemoService";
