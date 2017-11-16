@@ -164,20 +164,8 @@ export default class ServiceImpl {
 
                 chunks.push(chunk);
                 heap = Buffer.concat(chunks);
-                heap.length >= bufferLength && client.release();
-            });
-
-            client.on("end", () => {
-                // TODO clear
-                console.log("end");
-                console.log("client destroyed?: %s", client.destroyed);
-            });
-
-            client.on("close", err => {
-                // TODO clear
-                console.log("close");
-                console.log("client destroyed?: %s", client.destroyed);
-                if (!err) {
+                if (heap.length >= bufferLength) {
+                    client.release();
                     Decode(heap, (err, result) => {
                         if (err) {
                             return reject(err);

@@ -303,9 +303,9 @@ node-schedule@^1.2.5:
     long-timeout "0.1.1"
     sorted-array-functions "^1.0.0"
 
-node-socket-pool@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/node-socket-pool/-/node-socket-pool-0.1.1.tgz#e405dc135fc1c8a69bf738c4fa37ba71244a48c0"
+node-socket-pool@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/node-socket-pool/-/node-socket-pool-0.2.0.tgz#3d8daed8665873ba1dccda00fa2863c7a293ac0f"
   dependencies:
     moment "^2.19.2"
     node-schedule "^1.2.5"
