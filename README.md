@@ -22,7 +22,9 @@ yarn global add dubbo-node-zookeeper
 dubbo2ts -i DemoService.java -o services -g dubbo -r LATEST -t 6000
 ```
 
-生成示例 - DemoService.ts
+use `dubbo2ts -h` for more details.
+
+生成示例 - DemoService.ts(CLI generated)
 ```
 import Dubbo from "dubbo-node-zookeeper";
 
@@ -51,7 +53,7 @@ export default {
 };
 ```
 
-生成示例 - index.ts(引入所有的Services)
+生成示例 - index.ts(引入所有的Services)(CLI generated)
 ```
 import { ServiceHead as DemoService } from "./DemoService";
 
@@ -93,6 +95,3 @@ app.get("/hello", (req, res) => {
 
 ## Demo
 查看[Demo](./demo)工程
-
-## Alternatives
-[node-zookeeper-dubbo](https://www.npmjs.com/package/node-zookeeper-dubbo)
