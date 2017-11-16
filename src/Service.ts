@@ -1,11 +1,11 @@
 import IServiceInfo from "./IServiceInfo";
 import Dubbo from "./Dubbo";
 import * as qs from "querystring";
-import * as net from "net";
 import * as url from "url";
 import Java from "js-to-java";
 import Decode from "./protocol/Decode";
 import Encode, { IEncodeOption } from "./protocol/Encode";
+import PoolManager from "./PoolManager";
 
 export default class ServiceImpl {
     private zookeeper: any;
@@ -22,13 +22,17 @@ export default class ServiceImpl {
 
     private encodeParam: IEncodeOption;
 
+    private poolManager: PoolManager;
+
     public constructor(
         zookeeperClient: any,
+        poolManager: PoolManager,
         dubboVer: string,
         serviceInfo: IServiceInfo,
         dubbo: Dubbo
     ) {
         this.zookeeper = zookeeperClient;
+        this.poolManager = poolManager;
         this.version = serviceInfo.version;
         this.dubboVer = dubboVer;
         this.group = serviceInfo.group || (dubbo.getGroup() as string);
@@ -73,8 +77,10 @@ export default class ServiceImpl {
                         zoo.version === this.version &&
                         zoo.group === this.group
                     ) {
-                        this.hosts.push(url.parse(Object.keys(zoo)[0])
-                            .host as string);
+                        const host = url.parse(Object.keys(zoo)[0])
+                            .host as string;
+                        this.poolManager.createPool(host);
+                        this.hosts.push(host);
                         const methods = zoo.methods.split(",");
                         for (let j = 0, k = methods.length; j < k; j++) {
                             this.executors[methods[j]] = (method => {
@@ -111,36 +117,40 @@ export default class ServiceImpl {
         );
     };
 
-    private flush = cb => {
-        this.find(this.interfac, cb);
-    };
-
     private execute = (method: string, args) => {
         this.encodeParam.method = method;
         this.encodeParam.args = args;
         const buffer = new Encode(this.encodeParam).getBuffer();
 
-        return new Promise((resolve, reject) => {
-            const client = new net.Socket();
-            let host = this.hosts[
-                (Math.random() * this.hosts.length) | 0
-            ].split(":");
+        return new Promise(async (resolve, reject) => {
+            let client;
+            const untriedHosts: string[] = [].concat(this.hosts as any);
+            const tryOnce = async () => {
+                const host = untriedHosts.splice(
+                    (Math.random() * this.hosts.length) | 0,
+                    1
+                )[0];
+                const pool = this.poolManager.getPool(host);
+
+                try {
+                    client = await pool.getResource();
+                } catch (err) {
+                    return reject(err);
+                }
+            };
+
+            await tryOnce();
+
             const chunks: any[] = [];
             let heap;
             let bufferLength = 16;
-            client.connect(Number(host[1]), host[0], () => {
+            client.write(buffer);
+            client.on("error", async err => {
+                if (untriedHosts.length < 1) {
+                    return reject(err);
+                }
+                await tryOnce();
                 client.write(buffer);
-            });
-
-            client.on("error", () => {
-                this.flush(() => {
-                    host = this.hosts[
-                        (Math.random() * this.hosts.length) | 0
-                    ].split(":");
-                    client.connect(Number(host[1]), host[0], () => {
-                        client.write(buffer);
-                    });
-                });
             });
 
             client.on("data", chunk => {
@@ -154,11 +164,8 @@ export default class ServiceImpl {
 
                 chunks.push(chunk);
                 heap = Buffer.concat(chunks);
-                heap.length >= bufferLength && client.destroy();
-            });
-
-            client.on("close", err => {
-                if (!err) {
+                if (heap.length >= bufferLength) {
+                    client.release();
                     Decode(heap, (err, result) => {
                         if (err) {
                             return reject(err);
@@ -172,5 +179,10 @@ export default class ServiceImpl {
 
     public getExecutor = (method: string) => {
         return this.executors[method];
+    };
+
+    // 获取hosts用于初始化必要的socket connection pool
+    public getHosts = () => {
+        return this.hosts;
     };
 }

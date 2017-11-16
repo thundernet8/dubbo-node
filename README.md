@@ -3,6 +3,8 @@
 
 NodeJS与dubbo RPC通信, zookeeper协同，提供了CLI从Java Interface一键生成services并引用。
 
+内部使用了Socket连接池重用连接，以提高性能。
+
 ## Install
 
 ```
