@@ -2,6 +2,7 @@ import * as zookeeper from "node-zookeeper-client";
 import ServiceImpl from "./Service";
 import IServiceInfo from "./IServiceInfo";
 import Consumer from "./Consumer";
+import PoolManager from "./PoolManager";
 
 let SERVICE_LENGTH = 0;
 let COUNT = 0;
@@ -28,6 +29,7 @@ export default class Dubbo {
     private serviceImpls: { [service: string]: ServiceImpl } = {};
 
     private client: any;
+    private poolManager: PoolManager;
 
     public constructor(options: IDubboOptions) {
         Dubbo.instance = this;
@@ -41,6 +43,13 @@ export default class Dubbo {
         this.dubboVer = options.dubboVer;
 
         this.services = options.services;
+
+        this.poolManager = new PoolManager({
+            maxActive: Math.max(SERVICE_LENGTH * 2, 10),
+            maxIdle: Math.max(SERVICE_LENGTH, 2),
+            maxIdleTime: 60000,
+            maxWait: 20000
+        });
 
         this.client = zookeeper.createClient(options.register, {
             sessionTimeout: 3000,
@@ -91,6 +100,7 @@ export default class Dubbo {
         for (let key in this.services) {
             this.serviceImpls[key] = new ServiceImpl(
                 this.client,
+                this.poolManager,
                 this.dubboVer,
                 this.services[key],
                 this
