@@ -1,8 +1,9 @@
 {
     "name": "dubbo-node-zookeeper",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "connect to dubbo with nodejs consumer",
     "main": "lib/Dubbo.js",
+    "types": "lib/index.d.ts",
     "repository": "git@github.com:thundernet8/dubbo-node.git",
     "author": "wuxueqian <wuxueqian2010@hotmail.com>",
     "license": "MIT",
@@ -10,7 +11,7 @@
         "dubbo2ts": "./bin/dubbo2ts"
     },
     "scripts": {
-        "build": "rimraf lib && tsc",
+        "build": "rimraf lib && tsc && cp src/index.d.ts lib/",
         "test": "node tests/index.js",
         "test:cli":
             "./bin/dubbo2ts -i tests/cli/java -o tests/cli/java/services -g dubbo -r LATEST -t 6000"
@@ -24,7 +25,7 @@
         "hessian.js": "^2.5.0",
         "js-to-java": "^2.4.0",
         "mkdirp": "^0.5.1",
-        "node-socket-pool": "^0.2.0",
+        "node-socket-pool": "^0.2.2",
         "node-zookeeper-client": "^0.2.2",
         "prettier": "^1.8.2",
         "querystring": "^0.2.0",
