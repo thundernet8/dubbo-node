@@ -1,5 +1,6 @@
 ## dubbo-node-zookeeper
 [![Build Status](https://travis-ci.org/thundernet8/dubbo-node.svg?branch=master)](https://travis-ci.org/thundernet8/dubbo-node)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node?ref=badge_shield)
 
 NodeJS与dubbo RPC通信, zookeeper协同，提供了CLI从Java Interface一键生成services并引用。
 
@@ -95,3 +96,7 @@ app.get("/hello", (req, res) => {
 
 ## Demo
 查看[Demo](./demo)工程
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node?ref=badge_large)
