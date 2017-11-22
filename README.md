@@ -95,3 +95,10 @@ app.get("/hello", (req, res) => {
 
 ## Demo
 查看[Demo](./demo)工程
+
+
+## License
+
+Dubbo-node-zookeeper is freely distributable under the terms of the [MIT license](https://github.com/thundernet8/dubbo-node/blob/master/LICENSE).
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fthundernet8%2Fdubbo-node?ref=badge_large)
