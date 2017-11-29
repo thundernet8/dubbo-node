@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build":
-            "dubbo2ts -i ../dubbo-node/demo/dubbo-demo/dubbo-demo-provider/src/main/java/com/alibaba/dubbo/demo/DemoService.java -o services && tsc",
+            "dubbo2ts -i ../dubbo-demo/dubbo-demo-provider/src/main/java/com/alibaba/dubbo/demo/DemoService.java -o services && tsc",
         "start": "node index.js"
     },
     "dependencies": {

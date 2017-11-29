@@ -1,0 +1,36 @@
+2017-11-29 17:47:13,954 - INFO  [main:QuorumPeerConfig@90] - Reading configuration from: ./bin/../conf/zoo.cfg
+2017-11-29 17:47:13,959 - WARN  [main:QuorumPeerMain@105] - Either no config or no quorum defined in config, running  in standalone mode
+2017-11-29 17:47:13,976 - INFO  [main:QuorumPeerConfig@90] - Reading configuration from: ./bin/../conf/zoo.cfg
+2017-11-29 17:47:13,977 - INFO  [main:ZooKeeperServerMain@94] - Starting server
+2017-11-29 17:47:14,002 - INFO  [main:Environment@97] - Server environment:zookeeper.version=3.3.6-1366786, built on 07/29/2012 06:22 GMT
+2017-11-29 17:47:14,002 - INFO  [main:Environment@97] - Server environment:host.name=192.168.196.162
+2017-11-29 17:47:14,003 - INFO  [main:Environment@97] - Server environment:java.version=1.8.0_111
+2017-11-29 17:47:14,004 - INFO  [main:Environment@97] - Server environment:java.vendor=Oracle Corporation
+2017-11-29 17:47:14,004 - INFO  [main:Environment@97] - Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre
+2017-11-29 17:47:14,005 - INFO  [main:Environment@97] - Server environment:java.class.path=./bin/../build/classes:./bin/../build/lib/*.jar:./bin/../zookeeper-3.3.6.jar:./bin/../lib/log4j-1.2.15.jar:./bin/../lib/jline-0.9.94.jar:./bin/../src/java/lib/*.jar:./bin/../conf:/Users/ezbuy/Desktop/JT:/Users/ezbuy/Desktop/JT:
+2017-11-29 17:47:14,007 - INFO  [main:Environment@97] - Server environment:java.library.path=/Users/ezbuy/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2017-11-29 17:47:14,007 - INFO  [main:Environment@97] - Server environment:java.io.tmpdir=/var/folders/19/1zlqyw2123g5l20c24sc8q1m0000gp/T/
+2017-11-29 17:47:14,008 - INFO  [main:Environment@97] - Server environment:java.compiler=<NA>
+2017-11-29 17:47:14,010 - INFO  [main:Environment@97] - Server environment:os.name=Mac OS X
+2017-11-29 17:47:14,010 - INFO  [main:Environment@97] - Server environment:os.arch=x86_64
+2017-11-29 17:47:14,011 - INFO  [main:Environment@97] - Server environment:os.version=10.12.6
+2017-11-29 17:47:14,011 - INFO  [main:Environment@97] - Server environment:user.name=ezbuy
+2017-11-29 17:47:14,012 - INFO  [main:Environment@97] - Server environment:user.home=/Users/ezbuy
+2017-11-29 17:47:14,013 - INFO  [main:Environment@97] - Server environment:user.dir=/Users/ezbuy/Desktop/dubbo-node/demo/zookeeper-3.3.6
+2017-11-29 17:47:14,021 - INFO  [main:ZooKeeperServer@673] - tickTime set to 2000
+2017-11-29 17:47:14,021 - INFO  [main:ZooKeeperServer@682] - minSessionTimeout set to -1
+2017-11-29 17:47:14,021 - INFO  [main:ZooKeeperServer@691] - maxSessionTimeout set to -1
+2017-11-29 17:47:14,048 - INFO  [main:NIOServerCnxn$Factory@143] - binding to port 0.0.0.0/0.0.0.0:2181
+2017-11-29 17:47:14,051 - FATAL [main:ZooKeeperServerMain@62] - Unexpected e2017-11-29 17:49:29,934 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn$Factory@251] - Accepted socket connection from /127.0.0.1:63148
+2017-11-29 17:49:30,131 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@777] - Client attempting to establish new session at /127.0.0.1:63148
+2017-11-29 17:49:30,139 - INFO  [SyncThread:0:FileTxnLog@199] - Creating new log file: log.1
+2017-11-29 17:49:30,278 - INFO  [SyncThread:0:NIOServerCnxn@1580] - Established session 0x1600729e9fa0000 with negotiated timeout 30000 for client /127.0.0.1:63148
+2017-11-29 17:53:41,965 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn$Factory@251] - Accepted socket connection from /127.0.0.1:64282
+2017-11-29 17:53:41,971 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@777] - Client attempting to establish new session at /127.0.0.1:64282
+2017-11-29 17:53:41,978 - INFO  [SyncThread:0:NIOServerCnxn@1580] - Established session 0x1600729e9fa0001 with negotiated timeout 4000 for client /127.0.0.1:64282
+2017-11-29 17:53:58,078 - WARN  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@634] - EndOfStreamException: Unable to read additional data from client sessionid 0x1600729e9fa0001, likely client has closed socket
+2017-11-29 17:53:58,085 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1435] - Closed socket connection for client /127.0.0.1:64282 which had sessionid 0x1600729e9fa0001
+2017-11-29 17:54:04,005 - INFO  [SessionTracker:ZooKeeperServer@316] - Expiring session 0x1600729e9fa0001, timeout of 4000ms exceeded
+2017-11-29 17:54:04,007 - INFO  [ProcessThread:-1:PrepRequestProcessor@399] - Processed session termination for sessionid: 0x1600729e9fa0001
+2017-11-29 17:54:14,809 - INFO  [ProcessThread:-1:PrepRequestProcessor@399] - Processed session termination for sessionid: 0x1600729e9fa0000
+2017-11-29 17:54:14,816 - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1435] - Closed socket connection for client /127.0.0.1:63148 which had sessionid 0x1600729e9fa0000
