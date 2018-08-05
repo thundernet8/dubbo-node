@@ -1,6 +1,6 @@
 {
     "name": "dubbo-node-zookeeper",
-    "version": "0.2.6",
+    "version": "0.3.0",
     "description": "connect to dubbo with nodejs consumer",
     "main": "lib/Dubbo.js",
     "types": "lib/index.d.ts",
