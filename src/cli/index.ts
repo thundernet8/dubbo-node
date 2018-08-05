@@ -57,8 +57,10 @@ try {
     });
     console.log('\r\n');
 
-    gen.genIndexFile();
-
+    const index = gen.genIndexFile();
+    const indexOutputFile = resolve(outputFoloder, `${index.name}.ts`);
+    console.log(indexOutputFile);
+    writeFileSync(indexOutputFile, index.code);
     console.log('\r\n');
 } catch (err) {
     throw err;
